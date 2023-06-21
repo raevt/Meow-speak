@@ -4,6 +4,13 @@
     This is painfully inefficient but meh
 """
 
+def _flip_dict(input: dict) -> dict:
+    """
+    Invert the keys and values of a dictionary.
+    """
+    # See https://stackoverflow.com/a/483685
+    return dict((v, k) for k, v in input.items())
+
 encode_dict = {
     'a': '000001',
     'b': '000010',
@@ -64,64 +71,6 @@ encode_dict = {
     '!': 'Z',
 }
 
-decode_dict = {
-    #Because of curly quotes...it's easiest to just use two dictionaries.
-    '000001': 'a',
-    '000010': 'b',
-    '000011': 'c',
-    '000100': 'd',
-    '000101': 'e',
-    '000110': 'f',
-    '000111': 'g',
-    '001000': 'h',
-    '001001': 'i',
-    '001010': 'j',
-    '001011': 'k',
-    '001100': 'l',
-    '001101': 'm',
-    '001110': 'n',
-    '001111': 'o',
-    '010000': 'p',
-    '010001': 'q',
-    '010010': 'r',
-    '010011': 's',
-    '010100': 't',
-    '010101': 'u',
-    '010110': 'v',
-    '010111': 'w',
-    '011000': 'x',
-    '011001': 'y',
-    '011010': 'z',
-    '011011': '0',
-    '011100': '1',
-    '011101': '2',
-    '011110': '3',
-    '011111': '4',
-    '100000': '5',
-    '100001': '6',
-    '100010': '7',
-    '100011': '8',
-    '100100': '9',
-    '100101': ',',
-    '100110': ':',
-    '100111': ';',
-    '101000': "'",
-    '101001': '"',
-    '101010': '-',
-    '101011': '–',
-    '101100': '—',
-    '101101': '(',
-    '101110': ')',
-    '101111': '[',
-    '110000': ']',
-    '110001': '…',
-    'W': ' ',
-    'X': '.',
-    'Y': '?',
-    'Z': '!',
-}
-
-
 binary_to_meow_dict = {
     '0': 'meow ',
     '1': 'mew ',
@@ -131,15 +80,9 @@ binary_to_meow_dict = {
     'Z': 'Mreeeow ',
 }
 
-meow_to_binary_dict = {
-    'meow': '0',
-    'mew': '1',
-    'Mau': '',
-    'mau': 'W',
-    'Mreow': 'X',
-    'Mreeow': 'Y',
-    'Mreeeow': 'Z',
-}
+decode_dict = _flip_dict(encode_dict)
+
+meow_to_binary_dict = _flip_dict(binary_to_meow_dict)
 
 """
 Reminder:
