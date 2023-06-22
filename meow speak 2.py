@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
     Rae Adimer
     Meow-speak 2
@@ -132,4 +134,5 @@ def main():
         if prompt == 'n':
             again = False
 
-main()
+if __name__ == "__main__":
+    main()
